@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Сленг 2026 — Мини-словарь</title>
+
+  <!-- Шрифт в стиле PgLang (Space Grotesk) -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --accent: linear-gradient(90deg, #c026d3, #ec4899, #a855f7);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      background: #0a0a15 url('https://files.catbox.moe/wz5o5s.jpg') no-repeat center center fixed;
+      background-size: cover;
+      background-attachment: fixed;
+      color: #f0f0ff;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0;
+      background: rgba(10,10,21,0.78); z-index: -1;
+    }
+
+    header { text-align:center; margin-bottom: 2rem; }
+    .logo { max-width: 340px; margin: 0 auto 1rem; border-radius: 20px; box-shadow: 0 20px 50px rgba(192,38,211,0.5); border: 4px solid rgba(236,72,153,0.6); }
+
+    h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      background: var(--accent);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .tabs {
+      display: flex; justify-content: center; gap: 12px; margin: 2rem 0; flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 14px 32px; background: rgba(255,255,255,0.08); border: none; border-radius: 50px;
+      color: white; font-size: 1.15rem; cursor: pointer; transition: all 0.3s; font-weight: 600;
+    }
+    .tab-btn.active {
+      background: linear-gradient(90deg, #c026d3, #ec4899);
+      color: white; box-shadow: 0 0 20px rgba(236,72,153,0.6);
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    #search {
+      width: 100%; max-width: 680px; margin: 0 auto 2rem; padding: 16px 24px;
+      font-size: 1.2rem; border: none; border-radius: 50px; background: rgba(255,255,255,0.09);
+      backdrop-filter: blur(12px); color: white; outline: none;
+    }
+
+    .container {
+      max-width: 1280px; margin: 0 auto; padding: 0 1rem;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 1.8rem;
+    }
+
+    .card {
+      background: rgba(26,26,46,0.85); backdrop-filter: blur(12px);
+      border: 1px solid rgba(192,38,211,0.3); border-radius: 20px; padding: 1.8rem;
+      transition: all 0.4s ease;
+    }
+    .card:hover { transform: translateY(-12px); box-shadow: 0 25px 60px rgba(236,72,153,0.25); }
+
+    .word { font-size: 2.5rem; font-weight: 700; background: var(--accent); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.6rem; }
+    .meaning { font-size: 1.2rem; line-height: 1.6; margin-bottom: 1rem; }
+    .example { font-style: italic; color: #d1d5db; font-size: 1.05rem; }
+
+    #history, #comments { max-width: 1000px; margin: 3rem auto; padding: 0 1.5rem; line-height: 1.8; font-size: 1.15rem; }
+
+    footer { text-align: center; padding: 4rem 1rem 2rem; color: #aaa; font-size: 1rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="https://files.catbox.moe/qjepzn.png" alt="Егор Боровской" class="logo">
+  <h1>Сленг 2026</h1>
+  <p style="font-size:1.3rem; color:#ddd;">Мини-словарь современного молодёжного сленга</p>
+  <p style="margin-top:0.8rem; color:#c4b5fd;">Выполнил Боровской Егор, 10-А класс</p>
+</header>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="dictionary">Словарь (115+ слов)</button>
+  <button class="tab-btn" data-tab="history">Предыстория проекта</button>
+  <button class="tab-btn" data-tab="comments">Комментарии (гости могут писать)</button>
+</div>
+
+<!-- ВКЛАДКА 1: СЛОВАРЬ -->
+<div id="dictionary" class="tab-content active">
+  <input type="text" id="search" placeholder="Поиск по слову, значению или примеру (кринж, cлоняра, оппы, rizz...)">
+  <div class="container" id="cards"></div>
+</div>
+
+<!-- ВКЛАДКА 2: ПРЕДЫСТОРИЯ -->
+<div id="history" class="tab-content">
+  <h2 style="text-align:center; color:#c026d3; margin-bottom:2rem;">Почему я создал этот словарь</h2>
+  <p>Изначально это был обычный индивидуальный проект по русскому языку в 10 классе. Но чем глубже я изучал тему, тем сильнее понимал:</p>
+  <p><strong>Сленг — это не порча языка, а будущее русского языка.</strong></p>
+  <p>Через 10–15 лет именно на этом языке будут говорить наши дети, студенты и даже учителя. Если мы сейчас не научимся понимать друг друга, пропасть между поколениями станет ещё глубже.</p>
+  <p>Я сделал этот словарь, чтобы:</p>
+  <ul style="margin:1.5rem 0; padding-left:2rem;">
+    <li>Молодёжь могла свободно общаться и не чувствовать осуждения</li>
+    <li>Учителя и родители понимали, о чём говорят их дети</li>
+    <li>Будущие поколения сохранили связь с настоящим</li>
+  </ul>
+  <p style="text-align:center; font-size:1.4rem; color:#ec4899; margin-top:3rem;">
+    Сленг — это культура, эмоции и голос нового поколения.<br>
+    Понимание — это мост между нами.
+    Спасибо что прочитали, теперь переходите к поиску слов! Только не скрольте!
+  </p>
+</div>
+
+<!-- ВКЛАДКА 3: КОММЕНТАРИИ (гости могут писать) -->
+<div id="comments" class="tab-content">
+  <div id="comments-section">
+    <h2 style="text-align:center; color:#c026d3; margin-bottom:1.5rem;">Комментарии</h2>
+    <div id="disqus_thread"></div>
+  </div>
+</div>
+
+<footer>
+  © 2026 • Боровской Егор, 10-А класс • Все права защищены
+</footer>
+
+<script>
+// ====================== 115 СЛОВ ======================
+const slang = [
+  { word: "Кринж", meaning: "Стыд, неловкость за кого-то или ситуацию", example: "Когда учитель начал танцевать — это кринж" },
+  { word: "Вайб", meaning: "Атмосфера, настроение, энергетика", example: "Этот плейлист — чистый летний вайб" },
+  { word: "Слей", meaning: "Выглядеть/выступать идеально", example: "Она в этом луке просто слей" },
+  { word: "Имба", meaning: "Очень круто, мощно", example: "Эта пушка в игре — имба" },
+  { word: "Рил", meaning: "Реально, правда", example: "Он рил" },
+  { word: "Флекс", meaning: "Хвастаться, показывать крутость", example: "Купил кроссы и сразу флексит" },
+  { word: "Краш", meaning: "Объект симпатии", example: "Новый одноклассник — мой краш" },
+  { word: "Треш", meaning: "Полный отстой, хаос", example: "Вечеринка была треш" },
+  { word: "Сигма", meaning: "Независимый уверенный парень", example: "Он чистый сигма" },
+  { word: "Делулу", meaning: "Жить в иллюзиях", example: "Она думает, он её любит — делулу" },
+  { word: "Глоу-ап", meaning: "Резкое преображение", example: "После отпуска у неё глоу-ап" },
+  { word: "Нормис", meaning: "Обычный человек без стиля", example: "Носит только масс-маркет — нормис" },
+  { word: "Альт", meaning: "Альтернативный стиль", example: "Она теперь альтушка" },
+  { word: "Токсик", meaning: "Токсичный человек", example: "Он токсик, беги" },
+  { word: "Рофл", meaning: "Смешно до слёз", example: "Мем — рофл, умер" },
+  { word: "Лол", meaning: "Смех", example: "Лол что за фигня" },
+  { word: "Чекать", meaning: "Смотреть, проверять", example: "Чекни мой словарь" },
+  { word: "Бот", meaning: "Тупой человек или фейк", example: "Ты бот?" },
+  { word: "Факап", meaning: "Облажаться", example: "Факапнул на экзамене" },
+  { word: "Ауф", meaning: "Кайф, круто", example: "Жизнь одна, проживи ее на ауф" },
+  { word: "Оппы", meaning: "Противники, враги", example: "Оппы в чате" },
+  { word: "Skibidi", meaning: "Мемное выражение удивления", example: "Skibidi туалет" },
+  { word: "Ohio", meaning: "Что-то странное, безумное", example: "Это чистый Ohio" },
+  { word: "Rizz", meaning: "Харизма, умение флиртовать", example: "У него большой rizz" },
+  { word: "Gyatt", meaning: "Восхищение женской фигурой", example: "Gyatt!" },
+  { word: "Mewing", meaning: "Техника улучшения черты лица", example: "Я мьюю" },
+  { word: "Aura", meaning: "Энергия, крутость", example: "Потерял ауру" },
+  { word: "Fanum tax", meaning: "Забирать еду у друга", example: "Fanum tax" },
+  { word: "Edge", meaning: "Держать себя в руках", example: "Я на edge" },
+  { word: "Looksmaxxing", meaning: "Максимизация внешности", example: "Занимаюсь looksmaxxing" },
+  { word: "Mog", meaning: "Превзойти внешностью", example: "Он меня могнул" },
+  { word: "Пикми", meaning: "Pick me girl", example: "Она пикми, фу" },
+  { word: "Мид", meaning: "Средняк", example: "Фильм мид" },
+  { word: "Комфортик", meaning: "Милый, уютный", example: "Этот плед — комфортик" },
+  { word: "Гостинг", meaning: "Пропасть без объяснений", example: "Загостил после свидания" },
+  { word: "Скуф", meaning: "Скучный взрослый", example: "Он уже скуф, 30+" },
+  { word: "Редфлаг", meaning: "человек, что даёт тревожные знаки", example: "Он запрещает общаться с друзьями — редфлаг" },
+  { word: "Брейнрот", meaning: "Зомби от шортсов", example: "Смотрю шортсы — брейнрот" },
+  { word: "Промпт", meaning: "Запрос для ИИ", example: "Хороший промпт" },
+  { word: "Слоп", meaning: "Низкокачественный ИИ-контент", example: "Это слоп" },
+  { word: "Окак", meaning: "Удивление", example: "Она родила,окак..." },
+  { word: "Пон", meaning: "Понял", example: "Пон, сделаю" },
+  { word: "Лойс", meaning: "Лайк", example: "Поставь лойс" },
+  { word: "Чечик", meaning: "Парень, чувак", example: "Этот чечик сигма" },
+  { word: "Пупупу", meaning: "Удивление", example: "Пупупу что за фигня" },
+  { word: "Лимб", meaning: "Ступор", example: "Я в лимбе" },
+  { word: "Подсветить", meaning: "Акцентировать", example: "Подсвети момент" },
+  { word: "Выгорание", meaning: "Эмоциональное истощение", example: "У меня выгорание" },
+  { word: "Зумер", meaning: "Поколение Z", example: "Типичный зумер" },
+  { word: "Чиллить", meaning: "Расслабляться", example: "Давай чиллить" },
+  { word: "Дрип", meaning: "Стильный образ", example: "У него дрип огонь" },
+  { word: "Шипперить", meaning: "Шипперить пару", example: "Я шипперю их" },
+  { word: "Хейтить", meaning: "Ненавидеть", example: "Не хейти" },
+  { word: "Изи", meaning: "Легко", example: "Изи катка" },
+  { word: "W", meaning: "Победа", example: "W брат" },
+  { word: "Лейм", meaning: "Скучно", example: "Для него геометрия это лейм" },
+  { word: "Тильт", meaning: "Злиться от проигрыша", example: "Я в тильте" },
+  { word: "Свага", meaning: "Стиль", example: "У него свага" },
+  { word: "Шеймить", meaning: "Стыдить", example: "Не шейми" },
+  { word: "Байтить", meaning: "Провоцировать", example: "Не байти меня" },
+  { word: "Форсить", meaning: "Навязывать", example: "Не форси" },
+  { word: "Абьюзер", meaning: "Психологический насильник", example: "Он абьюзер" },
+  { word: "Биполярочка", meaning: "Иронично о биполярке", example: "Моя биполярочка" },
+  { word: "Сас", meaning: "Классно", example: "У неё сасный лук" },
+  { word: "Гамать", meaning: "Играть", example: "Гамает сутками" },
+  { word: "Ботать", meaning: "Зубрить", example: "Ботаю матешу" },
+  { word: "Буллинг", meaning: "Травля", example: "Это буллинг" },
+  { word: "POV", meaning: "Точка зрения", example: "POV: ты на экзамене" },
+  { word: "Чиназес", meaning: "Классно (мем)", example: "Чиназес!" },
+  { word: "Ситуэйшншип", meaning: "Неопределённые отношения", example: "У нас ситуэйшншип" },
+  { word: "Минус вайб", meaning: "Плохое настроение", example: "Минус вайб сегодня" },
+  { word: "Плюс вайб", meaning: "Хорошее настроение", example: "Плюс вайб!" },
+  { word: "Лабубу", meaning: "Милый мем", example: "Лабубу мой фаворит" },
+  { word: "Слоняра", meaning: "Надежный человек, Основа компании", example: "Наш слоняра" },
+  { word: "НПС", meaning: "Человек из толпы", example: "Его поведение слишком предсказуемое, чувак явно НПС" },
+  { word: "Топ", meaning: "Лучший", example: "Топ трек" },
+  { word: "Норм", meaning: "Нормально", example: "Всё норм" },
+  { word: "Го", meaning: "Пошли", example: "Го гулять" },
+  { word: "Чел", meaning: "Чувак", example: "Этот чел странный" },
+  { word: "Фейк", meaning: "Подделка", example: "Это фейк" },
+  { word: "ИИ", meaning: "Искусственный интеллект", example: "ИИ нарисовал мне собачку!" },
+  { word: "Аватарка", meaning: "Фото профиля", example: "У него аватарка странная" },
+  { word: "Сасный", meaning: "Крутой", example: "Сасный вайб" },
+  { word: "Варваризоне", meaning: "Выражение счастья", example: "Варваризоне!" },
+  { word: "Шампунь", meaning: "Младший подросток", example: "Это шампунь ещё" },
+  { word: "Дратути", meaning: "Привет (мем)", example: "Дратути!" },
+  { word: "Сияй", meaning: "Выделяться", example: "Сияй!" },
+  { word: "Без фильтров", meaning: "Честно", example: "Говорю без фильтров" },
+  { word: "Кейс", meaning: "Ситуация", example: "Это другой кейс" },
+  { word: "Симп", meaning: "Слишком угодливый парень", example: "Она мне предлагает 500 рублей чтобы просто погулять? - симп" },
+  { word: "Суета", meaning: "Беспорядок", example: "Не суети" },
+  { word: "Йоу", meaning: "Привет", example: "Йоу, чё как?" },
+  { word: "Кек", meaning: "Смех", example: "Кек, лол" },
+  { word: "Фича", meaning: "Фишка", example: "Крутая фича" },
+  { word: "База", meaning: "Правда", example: "Это база" },
+  { word: "Кринжфест", meaning: "Собрание кринжа", example: "Вся вечеринка — кринжфест" },
+  { word: "Вайбчек", meaning: "Проверка вайба", example: "ВайбЧек Патруль!" },
+  { word: "Гринфлаг", meaning: "Хороший признак", example: "Уроки Английского? - Гринфлаг" },
+  { word: "Скип", meaning: "Пропустить", example: "Скип этот момент" },
+  { word: "Фан", meaning: "Фанат", example: "Я большой фан" },
+  { word: "Хайп", meaning: "Ажиотаж", example: "Он сегодня на хайпе" },
+  { word: "Шип", meaning: "Пара", example: "Мой любимый шип" },
+  { word: "Скроллинг", meaning: "Листание ленты без цели", example: "Ты часто скроллишь в Тик-Токе,все хорошо?." },
+  { word: "Киннить", meaning: "Персонаж/человек, с которым вы себя ассоциируете", example: "О, я кинню этого персонажа" },
+  { word: "Стэнить", meaning: "Быть преданным поклонником", example: "Я стэню это группу" },
+  { word: "Жиза", meaning: "Жизненно", example: "Жиза, у меня так же" },
+  { word: "Пруф", meaning: "Доказательство", example: "Я не верю тебе без пруфов" },
+  { word: "Бомбить", meaning: "Сильная злость", example: "Меня так бомбит эта ситуация" },
+  { word: "Душнить", meaning: "Придираться/занудствовать", example: "Хватит душнить" },
+  { word: "Ульта", meaning: "Мощное(иногда неожиданное) действие/фраза", example: "Ты всю жизнь ульту копила, чтобы разнести их в пух и прах?" },
+  { word: "ЛС", meaning: "Личные сообщения", example: "Напиши мне в ЛС" },
+  { word: "Нуб", meaning: "Новичок", example: "Ну ты и нуб на " },
+  { word: "ЛП", meaning: "Лучшая подруга", example: "Она моя ЛП" },
+  { word: "Муд", meaning: "Настроение", example: "У меня сегодня плохой муд" },
+  { word: "Олд", meaning: "Человек, который давно где-то состоит", example: "Я олд этой игры" },
+  { word: "ЧСВ", meaning: "Чувство собственной важности", example: "Ты видела как она на нас посмотрела? Она точно ЧСВ" },
+  { word: "Пранк", meaning: "Розыгрыш", example: "Это был пранк!" },
+  { word: "Лук", meaning: "Наряд", example: "Оцени мой сегодняшний лук" },
+]; 
+
+// ====================== РЕНДЕР И ПОИСК (исправлено) ======================
+const container = document.getElementById("cards");
+const searchInput = document.getElementById("search");
+
+function render(filtered = slang) {
+  container.innerHTML = "";
+  filtered.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <div class="word">${item.word}</div>
+      <div class="meaning">${item.meaning}</div>
+      <div class="example">${item.example}</div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+render();
+
+searchInput.addEventListener("input", e => {
+  const q = e.target.value.trim().toLowerCase();
+  if (!q) { render(); return; }
+
+  const filtered = slang.filter(item =>
+    item.word.toLowerCase().includes(q) ||
+    item.meaning.toLowerCase().includes(q) ||
+    item.example.toLowerCase().includes(q)
+  );
+  render(filtered);
+});
+
+// ====================== ТАБЫ ======================
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ====================== DISQUS (гостевые комментарии) ======================
+(function() {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://egorproject.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+</script>
+
+<div id="disqus_thread" style="max-width:1100px; margin:4rem auto; padding:0 1rem;"></div>
+
+</body>
+</html>
+
+
